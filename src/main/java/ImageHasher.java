@@ -1,31 +1,42 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
- * Created by reedtrevelyan on 12/29/15.
+ * Created by rtrev on 12/29/15.
  */
 public class ImageHasher {
 
     public static void main(String[] args) {
 //        BufferedImage br = toBufferedImage(new ImageIcon("436.JPG").getImage());
-        ImageIcon x = new ImageIcon(ImageHasher.class.getResource("436.JPG"));
+        ImageIcon x = new ImageIcon("resources/436.jpg");
     }
 
-    public static BufferedImage toBufferedImage(Image img) {
-        if (img instanceof BufferedImage) {
-            return (BufferedImage) img;
+    /**
+     * @param i RenderedImage to save, such as a BufferedImage
+     * @param filename Name to give the file (sans extension) e.g. "image01"
+     * @param format Extension to give the file e.g. "png"
+     * @return Success or failure of save operation
+     */
+    public static boolean saveToFile(RenderedImage i, String filename, String format) {
+        if (format.contains(".")) {
+            throw new IllegalArgumentException("Format string format incorrect");
         }
 
-        // Create a buffered image with transparency
-        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        if (filename.contains(".")) {
+            throw new IllegalArgumentException("Filename format incorrect");
+        }
 
-        // Draw the image on to the buffered image
-        Graphics2D bGr = bimage.createGraphics();
-        bGr.drawImage(img, 0, 0, null);
-        bGr.dispose();
+        try {
+            return ImageIO.write(i, format, new File(filename + "." + format));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        // Return the buffered image
-        return bimage;
+        return false;
     }
 }
