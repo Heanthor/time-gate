@@ -2,14 +2,12 @@ import org.junit.After;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
-import java.nio.file.Path;
 
 import static org.junit.Assert.*;
 
@@ -23,6 +21,7 @@ public class ImageHasherTest {
         File f = new File("resources/436.jpg");
         assertTrue(f.exists());
         assertNotNull(f);
+        assertFalse(new File("/asdf/asdf.djf").exists());
     }
 
     @Test

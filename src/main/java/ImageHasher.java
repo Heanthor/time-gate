@@ -9,11 +9,10 @@ import java.io.IOException;
 /**
  * Created by rtrev on 12/29/15.
  */
-public class ImageHasher {
+public class ImageHasher extends FileHasher{
 
-    public static void main(String[] args) {
-//        BufferedImage br = toBufferedImage(new ImageIcon("436.JPG").getImage());
-        ImageIcon x = new ImageIcon("resources/436.jpg");
+    public ImageHasher(File f) {
+        super(f);
     }
 
     /**
