@@ -11,8 +11,8 @@ import java.io.IOException;
  */
 public class ImageHasher extends FileHasher{
 
-    public ImageHasher(File f) {
-        super(f);
+    public ImageHasher(File file) {
+        super(file);
     }
 
     /**

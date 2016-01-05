@@ -31,7 +31,7 @@ public class ImageHasherTest {
     }
 
     @After
-    public void cleanUp() {
+    public void tearDown() {
         if (new File("resources/savedImage.jpg").exists()) {
             try {
                 Files.delete(FileSystems.getDefault().getPath(("resources/savedImage.jpg")));
